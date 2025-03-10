@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT_SECRET } from "../config/config";
 import { NextFunction, Request, Response } from "express";
 
@@ -11,8 +11,13 @@ export const authMiddleware = (req:Request, res: Response, next: NextFunction) =
     }
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        // @ts-ignore
-        req.userId = decoded.id;
+        if (typeof decoded === "string") {
+            res.status(403).json({
+                msg: "u have sent a string type token... it should be an object!"
+            })
+            return;
+        }
+        req.userId = (decoded as JwtPayload).id;
         next();
     } catch (error) {
         console.log(error)

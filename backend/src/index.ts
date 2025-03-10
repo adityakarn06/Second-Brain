@@ -1,5 +1,13 @@
 import 'dotenv/config'
 
+declare global {
+    namespace Express {
+        export interface Request {
+            userId?:string;
+        }
+    }
+}
+
 import express from "express";
 import userRouter from "./routes/user";
 import contentRouter from "./routes/content";

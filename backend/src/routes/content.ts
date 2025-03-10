@@ -10,7 +10,6 @@ contentRouter.post("/", async (req, res) => {
     type,
     title,
     tags: [],
-    // @ts-ignore
     userId: req.userId,
   });
   try {
