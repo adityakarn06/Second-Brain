@@ -12,25 +12,29 @@ interface ButtonProps {
 
 const variantStyles: { [key in Variants]: string } = {
   primary: "bg-purple-600 text-white",
-  secondary: "bg-purple-300 text-purple-600",
+  secondary: "bg-purple-200 text-purple-600",
 };
 
 const sizeStyles: { [key in ButtonProps["size"]]: string } = {
-  sm: "py-1 px-2 rounded-xl",
-  md: "py-2 px-4 rounded-md",
-  lg: "py-4 px-6 rounded-sm",
+  sm: "py-1 px-2",
+  md: "py-2 px-4",
+  lg: "py-4 px-6",
 };
 
-const defaultStyles = "rounded-md flex";
+const defaultStyles = "rounded-md font-light flex items-center";
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({variant, text, startIcon, endIcon, size}: ButtonProps) => {
   return (
     <button
-      className={`${variantStyles[props.variant]} ${defaultStyles} ${
-        sizeStyles[props.size]
+      className={`${variantStyles[variant]} ${defaultStyles} ${
+        sizeStyles[size]
       }`}
     >
-      {props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null} {props.text} {props.endIcon}
+      <div className="pr-2">
+        {startIcon}
+      </div>
+      {text}
+      {endIcon}
     </button>
   );
 };
