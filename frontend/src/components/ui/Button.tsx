@@ -23,9 +23,9 @@ const sizeStyles: { [key in ButtonProps["size"]]: string } = {
 
 const defaultStyles = "rounded-md font-light flex items-center";
 
-export const Button = ({variant, text, startIcon, endIcon, size}: ButtonProps) => {
+export const Button = ({variant, text, startIcon, endIcon, size, onClick}: ButtonProps) => {
   return (
-    <button
+    <button onClick={onClick}
       className={`${variantStyles[variant]} ${defaultStyles} ${
         sizeStyles[size]
       }`}
