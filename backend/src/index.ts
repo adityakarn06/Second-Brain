@@ -14,10 +14,11 @@ import contentRouter from "./routes/content";
 import sharingRouter from "./routes/sharing";
 import { connectDB } from "./config/db";
 import { authMiddleware } from "./middleware/auth";
+import cors from "cors";
 
 const app = express();
-
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/content", authMiddleware, contentRouter);

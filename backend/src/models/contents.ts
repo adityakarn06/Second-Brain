@@ -7,6 +7,7 @@ const contentSchema = new mongoose.Schema({
     link: { type: String },
     // type: { type: String, enum: contentTypes, required: true },
     tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
+    type: String,
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true },
 }, {timestamps: true});
 
