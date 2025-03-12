@@ -8,6 +8,8 @@ interface ButtonProps {
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   onClick?: () => void;
+  fullWidth?: boolean;
+  loading?: boolean;
 }
 
 const variantStyles: { [key in Variants]: string } = {
@@ -23,12 +25,12 @@ const sizeStyles: { [key in ButtonProps["size"]]: string } = {
 
 const defaultStyles = "rounded-md font-light flex items-center";
 
-export const Button = ({variant, text, startIcon, endIcon, size, onClick}: ButtonProps) => {
+export const Button = ({variant, text, startIcon, endIcon, size, onClick, fullWidth, loading}: ButtonProps) => {
   return (
     <button onClick={onClick}
       className={`${variantStyles[variant]} ${defaultStyles} ${
         sizeStyles[size]
-      }`}
+      } ${fullWidth ? " w-full flex justify-center items-center" : ""} ${loading ? "opacity-45 " : ""} diabled={loading} `}
     >
       <div className="pr-2">
         {startIcon}
