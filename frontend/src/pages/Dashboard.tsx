@@ -9,16 +9,17 @@ import { Sidebar } from '../components/ui/Sidebar'
 import { useContent } from '../hooks/useContent'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
+import SearchBar from '../components/ui/SearchBar'
 
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-  const {contents, refresh} = useContent();
+  const { contents, refresh } = useContent();
 
   useEffect(() => {
     refresh();
   }, [modalOpen]);
 
-  const shareurl = async() => {
+  const shareurl = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       alert("No token found");
@@ -49,15 +50,20 @@ export function Dashboard() {
         <CreateContentModal open={modalOpen} onClose={() => {
           setModalOpen(false);
         }} />
-        <div className='flex justify-end gap-4'>
-          <Button onClick={shareurl} startIcon={<Shareicon size='md' />} variant="secondary" size="md" text="Share brain" />
-          <Button onClick={() => { setModalOpen(true) }} startIcon={<PlusIcon size='md' />} variant="primary" size="md" text="Add content" />
+        <div className='flex justify-between my-4'>
+          <div className='w-3/4'>
+            <SearchBar />
+          </div>
+          <div className='flex justify-end gap-4 w-1/4'>
+            <Button onClick={shareurl} startIcon={<Shareicon size='md' />} variant="secondary" size="md" text="Share brain" />
+            <Button onClick={() => { setModalOpen(true) }} startIcon={<PlusIcon size='md' />} variant="primary" size="md" text="Add content" />
+          </div>
         </div>
         <div className='flex gap-4 flex-wrap'>
-          {contents.map(({type, link, title}) => <Card
-            title={title} 
-            link={link} 
-            type={type} 
+          {contents.map(({ type, link, title }) => <Card
+            title={title}
+            link={link}
+            type={type}
           />)}
         </div>
       </div>

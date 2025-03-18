@@ -1,4 +1,6 @@
-import { Shareicon } from "../icons/ShareIcon";
+import { ArrowLinkIcon } from "../icons/ArrowLinkIcon";
+import { DeleteIcon } from "../icons/DeleteIcon";
+import { EditIcon } from "../icons/EditIcon";
 
 interface CardProps {
     title: string;
@@ -11,18 +13,18 @@ export function Card({title, link, type}: CardProps) {
         <div className="flex justify-between">
             <div className="flex items-center text-md">
                 <div className="text-gray-500 pr-2">
-                    <Shareicon size="md" />
+                    <EditIcon size="md" />
                 </div>
                 {title}
             </div>
             <div className="flex items-center">
                 <div className="text-gray-500 pr-2">
                     <a href={link} target="_blank">
-                        <Shareicon size="md" />
+                        <ArrowLinkIcon size="md" />
                     </a>
                 </div>
                 <div className="text-gray-500">
-                    <Shareicon size="md" />
+                    <DeleteIcon size="md" />
                 </div>
             </div>
         </div>

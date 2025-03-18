@@ -1,4 +1,4 @@
-import 'dotenv/config'
+require('dotenv').config();
 
 declare global {
     namespace Express {
@@ -24,8 +24,8 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/content", authMiddleware, contentRouter);
 app.use("/api/v1/brain", sharingRouter);
 
-connectDB();
+connectDB(process.env.MONGO_URL as string);
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log("server started at http://localhost:3000");
 })
