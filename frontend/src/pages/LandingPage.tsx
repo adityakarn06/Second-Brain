@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {navigate("/signup")}, 100);
+  }, [])
+
   return (
     <div>
-      <h1>Landing Page</h1>
+      
     </div>
   )
 }
